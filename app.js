@@ -1,17 +1,26 @@
 import express from "express";
 const app = express();
 
-
-
 // connect Database
 
 // Library
+import path from "path";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+
+// import
+import route from "./routes/index.js";
 
 // .env
+import { config } from "dotenv";
+config();
+
+const PORT = process.env.PORT;
 
 // template engine
-app.set('view engine', 'pug'); //install pug as view
-app.set('views', './views'); // view 
+app.set("view engine", "pug"); //install pug as view
+app.set("views", "./views"); // view
 
 // app
 app.use(express.json()); // for parsing application/json
@@ -29,3 +38,9 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Routes init  
+route(app);
+
+app.listen(PORT, () => {
+    console.log(`App listening at port:${PORT}`);
+});
