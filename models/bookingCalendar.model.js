@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
-import User from "./user";
-import Room from "./room";
+import User from "./user.model";
+import Room from "./room.model";
 
 
 
