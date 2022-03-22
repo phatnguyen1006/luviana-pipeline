@@ -25,9 +25,12 @@ const __mytour_analytics = async (req, res) => {
         var html = $(body).find("script#__NEXT_DATA__");
 
         // analytics
-        console.log("node-1: ", html);
+        const scriptData = html[0].children[0]["data"];
+
+        console.log("node-1: ", scriptData?true:false);
+
     
-        res.status(200).json({ "data": html.toString() });
+        res.status(200).json(JSON.parse(scriptData));
     });
 }
 
