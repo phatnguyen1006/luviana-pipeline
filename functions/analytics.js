@@ -26,11 +26,21 @@ const __mytour_analytics = async (req, res) => {
 
         // analytics
         const scriptData = html[0].children[0]["data"];
+        const __NEXT_DATA__ = JSON.parse(scriptData).props.pageProps.hotelDetail;
 
-        console.log("node-1: ", scriptData?true:false);
+        console.log("node-1: ", __NEXT_DATA__?true:false);
 
     
-        res.status(200).json(JSON.parse(scriptData));
+        res.status(200).json({
+            // "address": __NEXT_DATA__.address,
+            // "thumb": __NEXT_DATA__.thumbnail,
+            // "video": __NEXT_DATA__.videoUrl,
+            // "descriptions": __NEXT_DATA__.descriptions,
+            // "location": __NEXT_DATA__.location,
+            "image": __NEXT_DATA__.images
+        });
+
+        // res.status(200).json(__NEXT_DATA__.address);
     });
 }
 
