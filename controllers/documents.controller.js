@@ -19,11 +19,15 @@ class documentsController {
             </ul>
 
             <br />
-            <br />
+            <hr />
             If you wanna see data example for any type.
+            <br />
             <br />
             Go to: <a href="/api/v1/examples">BASE_URL/api/v1/examples</a> to see full data examples.
             Or: url/exampples/:type to see data examples of that ype (Just fill type in list above).
+
+            <hr />
+            To provide data from url. Go to secret page: <a href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
         `);
     }
 }
