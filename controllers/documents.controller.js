@@ -24,7 +24,8 @@ class documentsController {
             <br />
             <br />
             Go to: <a href="/api/v1/examples">BASE_URL/api/v1/examples</a> to see full data examples.
-            Or: url/exampples/:type to see data examples of that ype (Just fill type in list above).
+            <br />
+            Or: <a>BASE_URL/api/v1/exampples/:type</a> to see data examples of that type (Just fill types in list above).
 
             <hr />
             To provide data from url. Go to secret page: <a href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
