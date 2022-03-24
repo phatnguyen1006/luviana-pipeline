@@ -11,14 +11,14 @@ class documentsController {
             <h2>Documentation</h2>
             <h4>List of data type</h4>
             <ul>
-                <li><a href="/api/v1/examples/name">name</a></li>
-                <li><a href="/api/v1/examples/address">address</a></li>
-                <li><a href="/api/v1/examples/category">category</a></li>
-                <li><a href="/api/v1/examples/location">location</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/name">name</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/address">address</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/category">category</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/location">location</a></li>
             </ul>
 
             <ul>
-                <li><a href="/api/v1/examples/thumbnail">thumbnail</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/thumbnail">thumbnail</a></li>
 
                 <ul>
                     <li>src</li>
@@ -26,22 +26,22 @@ class documentsController {
                 </ul>
                 <br />
 
-                <li><a href="/api/v1/examples/videoUrl">videoUrl</a></li>
-                <li><a href="/api/v1/examples/descriptions">descriptions</a></li>
-                <li><a href="/api/v1/examples/buildYear">buildYear</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/videoUrl">videoUrl</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/descriptions">descriptions</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/buildYear">buildYear</a></li>
             </ul>
 
             <ul>
-                <li><a href="/api/v1/examples/rating">rating</a></li>
-                <li><a href="/api/v1/examples/policies">policies</a></li>
-                <li><a href="/api/v1/examples/groupAmenities">groupAmenities</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/rating">rating</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/policies">policies</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/groupAmenities">groupAmenities</a></li>
             </ul>
 
             <ul>
-                <li><a href="/api/v1/examples/numRooms">numRooms</a></li>
-                <li><a href="/api/v1/examples/numRestaurants">numRestaurants</a></li>
-                <li><a href="/api/v1/examples/numBars">numBars</a></li>
-                <li><a href="/api/v1/examples/tags">tags</a></li>
+                <li><a style="color: orange" href="/api/v1/examples/numRooms">numRooms</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/numRestaurants">numRestaurants</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/numBars">numBars</a></li>
+                <li><a style="color: blue" href="/api/v1/examples/tags">tags</a></li>
             </ul>
 
             <br />
@@ -49,12 +49,12 @@ class documentsController {
             If you wanna see data example for any type.
             <br />
             <br />
-            Go to: <a href="/api/v1/examples">BASE_URL/api/v1/examples</a> to see full data examples.
+            Go to: <a style="color: green" href="/api/v1/examples">BASE_URL/api/v1/examples</a> to see full data examples.
             <br />
-            Or: <a href="#">BASE_URL/api/v1/exampples/<strong><em>:type</em></strong></a> to see data examples of that type (Just fill types in list above).
+            Or: <a style="color: green" href="#">BASE_URL/api/v1/exampples/<strong><em>:type</em></strong></a> to see data examples of that type (Just fill types in list above).
 
             <hr />
-            To provide data from url. Go to secret page: <a href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
+            To provide data from url. Go to secret page: <a style="color: gray" href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
         `);
     }
 }
