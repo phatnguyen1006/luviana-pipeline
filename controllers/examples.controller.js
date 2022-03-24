@@ -90,12 +90,7 @@ class examplesController {
 
         
             res.status(200).json({
-                "address": __NEXT_DATA__.address,
-                "thumb": __NEXT_DATA__.thumbnail,
-                "video": __NEXT_DATA__.videoUrl,
-                "descriptions": __NEXT_DATA__.descriptions,
-                "location": __NEXT_DATA__.location,
-                // "image": __NEXT_DATA__.images
+                "data": __NEXT_DATA__
             });
 
             // res.status(200).json(__NEXT_DATA__.address);
