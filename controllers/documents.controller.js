@@ -1,6 +1,3 @@
-import express from "express";
-import request from "request";
-import * as cheerio from "cheerio";
 import { config } from "dotenv";
 config();
 
