@@ -52,6 +52,9 @@ class documentsController {
 
             <hr />
             To provide data from url. Go to secret page: <a style="color: gray" href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
+
+            <hr />
+            Or provide rooms_details data from apartment's url. Go to secret page: <a href="#">BASE_URL/api/v1/pipeline/rooms_detail</a>
         `);
     }
 }
