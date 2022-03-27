@@ -1,51 +1,47 @@
 import request from "request";
 import * as cheerio from "cheerio";
+import * as http from "http";
+import puppeteer from "puppeteer";
 
 const __mytour_room_analytics = async (req, res) => {
-    if (!req.body.url) return;
+  if (!req.body.url) return;
 
-    // data
+  const qurl = req.body.url;
 
-    // request start
-    request(req.body.url, async function (error, responsive, body) {
-        if (error) {
-            console.log(error);
-            res.status(200).json({
-                "message": error
-            });
-        }
+  const browser = await puppeteer.launch({
+    headless: true,
+    ignoreHTTPSErrors: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--start-maximized"],
+  });
+  const page = await browser.newPage();
 
-        // console.log(req.body.url)
-        const $ = cheerio.load(body, {
-            xml: true,
-            xmlMode: true,
-            recognizeCDATA: true,
-            scriptingEnabled: true,
-        });
-        var html = $(body).find("div#rooms_detail");
+  console.log("Navigate to ... ", qurl);
 
-        // analytics
-        const scriptData = html[0];
-        // const __NEXT_DATA__ = JSON.parse(scriptData).props.pageProps.hotelDetail;
+  // await page.goto(qurl);
 
-        console.log("node-1: ", html[0]["children"][0]["children"]);
+  // wait
 
-        // res.status(200).json({
-        //     // apartment
-        //     "address": __NEXT_DATA__.address,
-        //     "type": __NEXT_DATA__.category?.code,
-        //     "descriptions": __NEXT_DATA__.descriptions,
-        //     "rating": __NEXT_DATA__.rating,
-        //     // room
-        //     "thumbnail": __NEXT_DATA__.thumbnail,
-        // });
+  await page.goto(qurl, {
+    // Set timeout cho page
+    timeout: 3000000,
+  });
+  // Chờ 2s sau khi page được load để tránh overload
+  await page.waitFor(2000);
 
-        res.status(200).json({
-            data: JSON.stringify(html)
-        });
+  let title = await page.evaluate(() => {
+    let header = document.querySelector("div#rooms_detail");
+    if (header === null) {
+      header = document.querySelector("div#rooms_detail");
+    }
+    return header.innerHTML;
+  });
 
-        // res.status(200).json(__NEXT_DATA__.address);
-    });
-}
+  console.log("Page ID Spawned", title);
+  // return page;
+
+  // console.log("picking up: ", page);
+  //   return res.send(title);
+  return res.status(200).json({ data: title });
+};
 
 export default __mytour_room_analytics;
