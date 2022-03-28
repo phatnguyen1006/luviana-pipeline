@@ -136,7 +136,7 @@ class examplesController {
             console.log("node-1: ", __NEXT_DATA__?true:false);
 
             let obj = {};
-            obj[example] = __NEXT_DATA__[`${example}`];
+            obj[example] = example==="descriptions" ? __NEXT_DATA__[`${example}`].replace(/\n|<br>/g, "<br/>") : __NEXT_DATA__[`${example}`] ;
         
             res.status(200).json(obj);
         });
