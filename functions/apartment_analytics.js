@@ -31,23 +31,17 @@ const __mytour_apartment_analytics = async (req, res) => {
         console.log("node-1: ", __NEXT_DATA__?true:false);
 
     
-        // res.status(200).json({
-        //     // apartment
-        //     "address": __NEXT_DATA__.address,
-        //     "type": __NEXT_DATA__.category?.code,
-        //     "descriptions": __NEXT_DATA__.descriptions,
-        //     "rating": __NEXT_DATA__.rating,
-        //     // room
-        //     "thumbnail": __NEXT_DATA__.thumbnail,
-        // });
+        res.status(200).json({
+            /** @type {string: __NEXT_DATA__.descriptions} */
+            // apartment
+            "address": __NEXT_DATA__.address,
+            "type": __NEXT_DATA__.category?.code,
+            "descriptions": __NEXT_DATA__.descriptions?.replace(/\n|<br>/g, "<br/>") ?? "unknown",
+            "rating": __NEXT_DATA__.rating,
+            // room
+            "thumbnail": __NEXT_DATA__.thumbnail,
+        });
 
-        // res.status(200).json({
-        //     data: __NEXT_DATA__
-        // });
-
-        res.send(__NEXT_DATA__.descriptions);
-
-        // res.status(200).json(__NEXT_DATA__.address);
     });
 }
 
