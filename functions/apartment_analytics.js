@@ -1,6 +1,8 @@
 import request from "request";
 import * as cheerio from "cheerio";
 
+import { addNewApartment } from "../services/apartment.services.js";
+
 const __mytour_apartment_analytics = async (req, res) => {
     if (!req.body.url) return;
 
@@ -30,6 +32,8 @@ const __mytour_apartment_analytics = async (req, res) => {
 
         console.log("node-1: ", __NEXT_DATA__?true:false);
 
+        // add to database
+        // const newApartmentRequest = await addNewApartment(scriptData);
     
         res.status(200).json({
             /** @type {string: __NEXT_DATA__.descriptions} */
