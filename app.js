@@ -2,8 +2,8 @@ import express from "express";
 const app = express();
 
 // connect Database
-// import connectDB from "./configs/connectDB.js";
-// connectDB();
+import connectDB from "./configs/connectDB.js";
+connectDB();
 
 // Library
 import path from "path";

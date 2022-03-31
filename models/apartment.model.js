@@ -1,5 +1,4 @@
 import mongoose from "mongoose"
-import Address from "./address.model.js"
 
 
 
@@ -10,8 +9,7 @@ const apartmentSchema = new mongoose.Schema({
     },
     address: {
         apartmentNumber: {
-            type: String,
-            required: [true, "Apartment number is required!"]
+            type: String
         },
         street: {
             type: String,
