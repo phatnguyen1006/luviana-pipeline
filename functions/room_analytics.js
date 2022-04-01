@@ -3,12 +3,12 @@ import * as cheerio from "cheerio";
 import * as http from "http";
 import puppeteer from "puppeteer";
 
-
+import { RoomServices } from "../services/room.services.js";
 
 const __mytour_room_analytics = async (req, res) => {
-  if (!req.body.url) return;
+  if (!res.locals.url) return;
 
-  const qurl = req.body.url;
+  const qurl = res.locals.url;
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -92,6 +92,19 @@ const __mytour_room_analytics = async (req, res) => {
       price: parseInt(foundPrice),
     };
   });
+
+  // const roomData = {
+  //   id: res.locals.apartmentID ?? null,
+  //   price: ,
+  //   description: ,
+  //   capacity: ,
+  //   rating: ,
+  //   thumbnail: ,
+  //   pictures: ,
+  //   isAvailable: true,
+  // }
+
+  // const newRooms = await RoomServices.addNewRoom()
 
   // console.log("picking up: ", page);
   return res.status(200).json({

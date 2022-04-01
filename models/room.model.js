@@ -38,8 +38,7 @@ const roomSchema = new mongoose.Schema({
         required: true
     },
     facilities: [{
-        type: String,
-        required: [true, "Facilities of room is required!"]
+        type: String
     }]
 })
 
