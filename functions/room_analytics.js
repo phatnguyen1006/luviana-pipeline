@@ -87,8 +87,6 @@ const __mytour_room_analytics = async (req, res) => {
     const foundBedType = r.split("giường")[1].trim().split("<").shift();
     const foundBed = foundBedCount + " " + foundBedType;
 
-    console.log(typeof(res.locals.apartmentID));
-
     const newRoom = await RoomServices.addNewRoom({
       apartmentId: res.locals.apartmentID,
       price: parseInt(foundPrice),
@@ -131,10 +129,11 @@ const __mytour_room_analytics = async (req, res) => {
 
   // const newRooms = await RoomServices.addNewRoom()
 
-  // console.log("picking up: ", page);
   Promise.all([__room_data])
-    .then((p) =>
+    .then((_) =>
       res.status(200).json({
+        apartment: 1,
+        rooms: checkArr,
         message: "Add new instance successfully."
       })
     )
