@@ -41,6 +41,10 @@ class documentsController {
                 <li><a style="color: blue" href="/api/v1/examples/tags">tags</a></li>
             </ul>
 
+            <ul style="list-style-type: hiragana;">
+                <li><a style="color: red;" href="/api/v1/examples/rooms"><b>Rooms</b></a></li>
+            </ul>
+
             <br />
             <hr />
             If you wanna see data example for any type.
