@@ -6,7 +6,10 @@ import puppeteer from "puppeteer";
 import { RoomServices } from "../services/room.services.js";
 
 const __mytour_room_analytics = async (req, res) => {
-  if (!res.locals.url) return;
+  if (!res.locals.url || !res.locals.apartmentID)
+    return res.status(400).json({
+      error: "Cant create new room. Please check apartmentID or url.",
+    });
 
   const qurl = res.locals.url;
 
@@ -49,7 +52,7 @@ const __mytour_room_analytics = async (req, res) => {
   const checkArr = title.length;
 
   // split từ thẻ /div số 2
-  const __room_data = title.map((r) => {
+  const __room_data = title.map(async (r) => {
     const stepZero = r;
     const stepOne = stepZero.split("</div>"); // chưa map data => chọn title 2 để test
 
@@ -84,13 +87,35 @@ const __mytour_room_analytics = async (req, res) => {
     const foundBedType = r.split("giường")[1].trim().split("<").shift();
     const foundBed = foundBedCount + " " + foundBedType;
 
-    return {
-      name: foundName,
-      capacity: foundCapacity,
-      stretch: foundStretch,
-      bed: foundBed,
+    console.log(typeof(res.locals.apartmentID));
+
+    const newRoom = await RoomServices.addNewRoom({
+      apartmentId: res.locals.apartmentID,
       price: parseInt(foundPrice),
-    };
+      description: "This is description",
+      capacity: 2,
+      rating: 4,
+      thumbnail: "123",    // update
+      pictures: ["123"],  // update
+      isAvailable: true,
+    });
+
+    if (newRoom) {
+
+      return newRoom.data;
+
+      // return {
+      //   name: foundName,
+      //   capacity: foundCapacity,
+      //   stretch: foundStretch,
+      //   bed: foundBed,
+      //   price: parseInt(foundPrice),
+      // };
+    } else {
+      return res.status(400).json({
+        error: "Cant create new room. Data pipeline is failed",
+      });
+    }
   });
 
   // const roomData = {
@@ -107,10 +132,15 @@ const __mytour_room_analytics = async (req, res) => {
   // const newRooms = await RoomServices.addNewRoom()
 
   // console.log("picking up: ", page);
-  return res.status(200).json({
-    length: checkArr,
-    data: __room_data,
-  });
+  Promise.all([__room_data])
+    .then((p) =>
+      res.status(200).json({
+        message: "Add new instance successfully."
+      })
+    )
+    .catch((error) => {
+      throw `Failed to create room with error: ${error}`;
+    });
   // return res.send(title);
 };
 
