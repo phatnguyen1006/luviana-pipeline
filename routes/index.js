@@ -10,6 +10,9 @@ function route(app) {
     app.use("/api/v1/documents", document);
     app.use("/api/v1/examples", examples);
     app.use("/api/v1/pipeline", pipeline);
+
+    app.get("*", (req, res) => res.redirect("/"));
+    app.get((req, res) => res.redirect("/"));
 }
 
 export default route;
