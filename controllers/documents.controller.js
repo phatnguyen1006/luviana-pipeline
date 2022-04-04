@@ -56,7 +56,7 @@ class documentsController {
             Or: <a style="color: green" href="#">BASE_URL/api/v1/exampples/<strong><em>:type</em></strong></a> to see data examples of that type (Just fill types in list above).
 
             <hr />
-            To provide data from url. Go to secret page: <a style="color: #c895e6" href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
+            To provide data from url. Go to secret page: <a style="color: #0a2e40" href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
 
             <hr />
             <p> <h4 style="color: #326fa8; padding-bottom: 0px; margin-bottom: 0;">@deprecated</h5>
