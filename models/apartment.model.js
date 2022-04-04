@@ -9,7 +9,8 @@ const apartmentSchema = new mongoose.Schema({
     },
     address: {
         apartmentNumber: {
-            type: String
+            type: String,
+            required: [true, "Apartment number is required!"]
         },
         street: {
             type: String,
@@ -28,6 +29,13 @@ const apartmentSchema = new mongoose.Schema({
             required: [true, "Country is required"]
         }
     },
+    thumbnail: {
+        type: String,
+        required: [true, "Thumbnail of room is required!"]
+    },
+    pictures: [{
+        type: String,
+    }],
     type: {
         type: String,
         required: [true, "Type of appartment is required!"],
