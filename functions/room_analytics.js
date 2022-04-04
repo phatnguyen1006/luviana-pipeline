@@ -80,11 +80,11 @@ const __mytour_room_analytics = async (req, res) => {
         ?.split(">")
         ?.pop()
         ?.split(".")
-        ?.join("") ?? "unknown";
+        ?.join("") ?? 400000;
 
     // số giường X
     const foundBedCount = r.split("giường")[0].trim().split(">").pop();
-    const foundBedType = r.split("giường")[1].trim().split("<").shift();
+    const foundBedType = r.split("giường")[1].trim().split("<").shift()?.split("và")[0]?.trim();
     const foundBed = foundBedCount + " " + foundBedType;
 
     // name: 
@@ -98,33 +98,40 @@ const __mytour_room_analytics = async (req, res) => {
     // isAvailable: 
     // facilities:
 
-    const newRoom = await RoomServices.addNewRoom({
-      apartmentId: res.locals.apartmentID,
-      name: foundName,
-      price: parseInt(foundPrice),
-      bedName: foundBed,
-      capacity: foundCapacity,
-      square: foundStretch,
-      rating: 4,
-      thumbnail: "https://media.istockphoto.com/vectors/man-sleeping-on-bed-vector-id1142805287?k=20&m=1142805287&s=612x612&w=0&h=PnEs5WJXlhs6JdiDfu-0pVOTHDIL9h3q4NJHFzKiftk=",    // update
-      isAvailable: true,
-      facilities: ["full-option"]
-    });
-
-    if (newRoom) {
-
-      return newRoom.data;
-
-      // return {
-      //   name: foundName,
-      //   capacity: foundCapacity,
-      //   stretch: foundStretch,
-      //   bed: foundBed,
-      //   price: parseInt(foundPrice),
-      // };
-    } else {
-      return res.status(400).json({
-        error: "Cant create new room. Data pipeline is failed",
+    try {
+      const newRoom = await RoomServices.addNewRoom({
+        apartmentId: res.locals.apartmentID,
+        name: foundName,
+        price: parseInt(foundPrice),
+        bedName: foundBed,
+        capacity: foundCapacity,
+        square: foundStretch,
+        rating: 4,
+        thumbnail: "https://media.istockphoto.com/vectors/man-sleeping-on-bed-vector-id1142805287?k=20&m=1142805287&s=612x612&w=0&h=PnEs5WJXlhs6JdiDfu-0pVOTHDIL9h3q4NJHFzKiftk=",    // update
+        isAvailable: true
+      });
+  
+      if (newRoom.success) {
+  
+        return newRoom.data;
+  
+        // return {
+        //   name: foundName,
+        //   capacity: foundCapacity,
+        //   stretch: foundStretch,
+        //   bed: foundBed,
+        //   price: parseInt(foundPrice),
+        // };
+      } else {
+        return res.render("fetching", {
+          status: 400,
+          error: "Cant create new room. Data pipeline is failed"
+        });
+      }
+    } catch (error) {
+      return res.render("fetching", {
+        status: 500,
+        error: `Cant create new room. Data pipeline is failed with error: ${error}`
       });
     }
   });
@@ -144,10 +151,9 @@ const __mytour_room_analytics = async (req, res) => {
 
   Promise.all([__room_data])
     .then((_) =>
-      res.status(200).json({
-        apartment: 1,
-        rooms: checkArr,
-        message: "Add new instance successfully."
+      res.render("fetching", {
+        status: 200,
+        message: `Add new instance: { apartment: 1 - rooms: ${checkArr} } successfully.`
       })
     )
     .catch((error) => {

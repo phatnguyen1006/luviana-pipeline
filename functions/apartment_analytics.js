@@ -46,31 +46,49 @@ const __mytour_apartment_analytics = async (req, res, next) => {
       __NEXT_DATA__.descriptions?.replace(/\n|<br>/g, "<br/>") ?? "unknown";
 
     const _thumbnail = __NEXT_DATA__.thumbnail.src;
-    const _pictures = __NEXT_DATA__.images.map(i => i.src);
+    const _pictures = __NEXT_DATA__.images.map((i) => i.src);
 
-    // address, name, type, rating, description, thumbnail, pictures
-    const newApartment = await ApartmentService.addNewApartment(_address, __NEXT_DATA__.name, __NEXT_DATA__.category?.code, 4, _descriptions, _thumbnail, _pictures);
+    try {
+      // address, name, type, rating, description, thumbnail, pictures
+      const newApartment = await ApartmentService.addNewApartment(
+        _address,
+        __NEXT_DATA__.name,
+        __NEXT_DATA__.category?.code,
+        4,
+        _descriptions,
+        _thumbnail,
+        _pictures
+      );
 
-    if (newApartment) {
-    // if (true) {
-      // res.status(200).json({
-      //   /** @type {string: __NEXT_DATA__.descriptions} */
-      //   // apartment
-      //   name: __NEXT_DATA__.name,
-      //   address: __NEXT_DATA__.address,
-      //   type: __NEXT_DATA__.category?.code,
-      //   descriptions:
-      //     __NEXT_DATA__.descriptions?.replace(/\n|<br>/g, "<br/>") ?? "unknown",
-      //   rating: __NEXT_DATA__.rating,
-      //   // room
-      //   thumbnail: __NEXT_DATA__.thumbnail,
-      // });
+      if (newApartment.success) {
+        // if (true) {
+        // res.status(200).json({
+        //   /** @type {string: __NEXT_DATA__.descriptions} */
+        //   // apartment
+        //   name: __NEXT_DATA__.name,
+        //   address: __NEXT_DATA__.address,
+        //   type: __NEXT_DATA__.category?.code,
+        //   descriptions:
+        //     __NEXT_DATA__.descriptions?.replace(/\n|<br>/g, "<br/>") ?? "unknown",
+        //   rating: __NEXT_DATA__.rating,
+        //   // room
+        //   thumbnail: __NEXT_DATA__.thumbnail,
+        // });
 
-      res.locals.url = req.body.url;
-      res.locals.apartmentID = newApartment.data?._id ?? null;
-      next();
-    } else {
-      res.status(400).json({ error: "Bad request" });
+        res.locals.url = req.body.url;
+        res.locals.apartmentID = newApartment.data?._id ?? null;
+        next();
+      } else {
+        return res.render("fetching", {
+          status: 400,
+          error: "Bad request",
+        });
+      }
+    } catch (error) {
+      return res.render("fetching", {
+        status: 500,
+        error: `Cant create new room. Data pipeline is failed with error: ${error}`,
+      });
     }
   });
 };
