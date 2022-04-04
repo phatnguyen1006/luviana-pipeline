@@ -5,7 +5,7 @@ class documentsController {
     // [GET]: Documentation
     showDocumentation(req, res, next) {
         return res.send(`
-            <h2>Documentation</h2>
+            <h2 style="color: #3293a8">Documentation</h2>
             <h4>List of data type</h4>
             <ul>
                 <li><a style="color: orange" href="/api/v1/examples/name">name</a></li>
@@ -47,6 +47,7 @@ class documentsController {
 
             <br />
             <hr />
+            <hr />
             If you wanna see data example for any type.
             <br />
             <br />
@@ -58,7 +59,8 @@ class documentsController {
             To provide data from url. Go to secret page: <a style="color: gray" href="/api/v1/pipeline/apartment">BASE_URL/api/v1/pipeline</a>
 
             <hr />
-            Or provide rooms_details data from apartment's url. Go to secret page: <a href="#">BASE_URL/api/v1/pipeline/rooms_detail</a>
+            <p> <h4 style="color: #326fa8; padding-bottom: 0px; margin-bottom: 0;">@deprecated</h5>
+            Or provide rooms_details data from apartment's url. Go to secret page: <a href="#">BASE_URL/api/v1/pipeline/rooms_detail</a></p>
         `);
     }
 }
