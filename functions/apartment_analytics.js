@@ -45,7 +45,11 @@ const __mytour_apartment_analytics = async (req, res, next) => {
     const _descriptions =
       __NEXT_DATA__.descriptions?.replace(/\n|<br>/g, "<br/>") ?? "unknown";
 
-    const newApartment = await ApartmentService.addNewApartment(_address, __NEXT_DATA__.name, __NEXT_DATA__.category?.code, 4, _descriptions);
+    const _thumbnail = __NEXT_DATA__.thumbnail.src;
+    const _pictures = __NEXT_DATA__.images.map(i => i.src);
+
+    // address, name, type, rating, description, thumbnail, pictures
+    const newApartment = await ApartmentService.addNewApartment(_address, __NEXT_DATA__.name, __NEXT_DATA__.category?.code, 4, _descriptions, _thumbnail, _pictures);
 
     if (newApartment) {
     // if (true) {

@@ -87,15 +87,28 @@ const __mytour_room_analytics = async (req, res) => {
     const foundBedType = r.split("giường")[1].trim().split("<").shift();
     const foundBed = foundBedCount + " " + foundBedType;
 
+    // name: 
+    // apartmentId: 
+    // price: 
+    // bedName: 
+    // capacity: 
+    // square: 
+    // rating: 
+    // thumbnail: 
+    // isAvailable: 
+    // facilities:
+
     const newRoom = await RoomServices.addNewRoom({
       apartmentId: res.locals.apartmentID,
+      name: foundName,
       price: parseInt(foundPrice),
-      description: "This is description",
-      capacity: 2,
+      bedName: foundBed,
+      capacity: foundCapacity,
+      square: foundStretch,
       rating: 4,
-      thumbnail: "123",    // update
-      pictures: ["123"],  // update
+      thumbnail: "https://media.istockphoto.com/vectors/man-sleeping-on-bed-vector-id1142805287?k=20&m=1142805287&s=612x612&w=0&h=PnEs5WJXlhs6JdiDfu-0pVOTHDIL9h3q4NJHFzKiftk=",    // update
       isAvailable: true,
+      facilities: ["full-option"]
     });
 
     if (newRoom) {
