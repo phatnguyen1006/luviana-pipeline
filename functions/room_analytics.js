@@ -4,6 +4,7 @@ import * as http from "http";
 import puppeteer from "puppeteer";
 
 import { RoomServices } from "../services/room.services.js";
+import { getRandomIntInclusive } from "../helpers/random.js";
 
 const __mytour_room_analytics = async (req, res) => {
   if (!res.locals.url || !res.locals.apartmentID)
@@ -106,7 +107,7 @@ const __mytour_room_analytics = async (req, res) => {
         bedName: foundBed,
         capacity: foundCapacity,
         square: foundStretch,
-        rating: 4,
+        rating: getRandomIntInclusive(3,5),
         thumbnail: "https://media.istockphoto.com/vectors/man-sleeping-on-bed-vector-id1142805287?k=20&m=1142805287&s=612x612&w=0&h=PnEs5WJXlhs6JdiDfu-0pVOTHDIL9h3q4NJHFzKiftk=",    // update
         isAvailable: true
       });

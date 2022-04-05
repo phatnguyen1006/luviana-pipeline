@@ -2,6 +2,7 @@ import request from "request";
 import * as cheerio from "cheerio";
 
 import { ApartmentService } from "../services/apartment.services.js";
+import { getRandomIntInclusive } from "../helpers/random.js";
 
 const __mytour_apartment_analytics = async (req, res, next) => {
   if (!req.body.url) return;
@@ -54,7 +55,7 @@ const __mytour_apartment_analytics = async (req, res, next) => {
         _address,
         __NEXT_DATA__.name,
         __NEXT_DATA__.category?.code,
-        4,
+        getRandomIntInclusive(3,5),
         _descriptions,
         _thumbnail,
         _pictures
