@@ -15,7 +15,7 @@ const __mytour_room_analytics = async (req, res) => {
   const qurl = res.locals.url;
 
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     ignoreHTTPSErrors: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox", "--start-maximized"],
     ignoreDefaultArgs: ['--disable-extensions']
