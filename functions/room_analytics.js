@@ -18,6 +18,7 @@ const __mytour_room_analytics = async (req, res) => {
     headless: true,
     ignoreHTTPSErrors: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox", "--start-maximized"],
+    ignoreDefaultArgs: ['--disable-extensions']
   });
   const page = await browser.newPage();
 
