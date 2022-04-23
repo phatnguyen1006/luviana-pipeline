@@ -61,6 +61,10 @@ class documentsController {
             <hr />
             <p> <h4 style="color: #326fa8; padding-bottom: 0px; margin-bottom: 0;">@deprecated</h5>
             Or provide rooms_details data from apartment's url. Go to secret page: <a style="color: gray" href="#">BASE_URL/api/v1/pipeline/rooms_detail</a></p>
+
+            <hr />
+            <h4><a href="#">Run scripts to clear trash data in database.</a></h4>
+            <p>This script will delete the room datas which isn't matched to any apartment.</p>
         `);
     }
 }
